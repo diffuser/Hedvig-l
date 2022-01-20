@@ -1,0 +1,36 @@
+--- main.yaml	2022-01-10 11:33:12.992740080 +0000
++++ main.yaml.original	2021-12-17 15:51:31.932135214 +0000
+@@ -31,25 +31,15 @@
+     name: "{{ packages }}"
+     state: latest
+   become: yes
+-
+ - name: Install pip
+-  yum:
+-    name: python3-pip
+-    state: latest
+-  become: yes
+-- name: install the package, force upgrade
+-  pip:
++  easy_install:
+     name: pip
+-    executable: pip3
+     state: latest
+   become: yes
+ - name: Install fabric
+   pip:
+     name: fabric
+-    executable: pip3
+   become: yes
+-
+-
+ - name: Disable password auth
+   lineinfile:
+     path: /etc/ssh/sshd_config
+@@ -86,4 +76,4 @@
+   become: yes
+ - name: Restart server
+   reboot:
+-  become: yes
++  become: yes
+\ No newline at end of file
